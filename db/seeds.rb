@@ -25,9 +25,6 @@ Activity.create(to_do: "Workout", location: "Gym", duration: "1.5 Hours", calend
 Activity.create(to_do: "Dinner with friends", location: "Restaurant", duration: "4 Hours", calender_id: 6)
 Activity.create(to_do: "Relax and Rcover", location: "Home", duration: "Any duration", calender_id: 7)
 
-Chore.create(to_do: "Cook", calender_id: 7)
-Chore.create(to_do: "Clean", calender_id: 6)
-Chore.create(to_do: "Laundry", calender_id: 6)
 
 
 puts "✅ Done seeding!"

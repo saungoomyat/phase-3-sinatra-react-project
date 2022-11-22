@@ -22,10 +22,5 @@ ActiveRecord::Schema.define(version: 2022_11_14_010609) do
   create_table "calenders", force: :cascade do |t|
     t.string "day"
   end
-
-  create_table "chores", force: :cascade do |t|
-    t.string "to_do"
-    t.integer "calender_id"
-  end
-
+  
 end
