@@ -1,0 +1,79 @@
+class ApplicationController < Sinatra::Base
+  set :default_content_type, 'application/json'
+  # Add your routes here
+  get "/" do
+    { message: "Welcome to my project!" }.to_json
+  end
+
+  get '/calenders' do
+    calender = Calender.all
+    calender.to_json(include: :activities)
+  end
+
+  get "/calenders/:id" do
+    calender = Calender.find(params[:id])
+    calender.to_json(include: :activities)
+
+  end
+
+
+  post '/calenders' do
+    calender = Calender.create(day: params[:day])
+    calender.to_json(include: :activities)
+  end
+
+
+  get "/activities" do
+    activity = Activity.all
+    activity.to_json()
+  end
+
+  get "/activities/:id" do
+    activity = Activity.find(params[:id])
+    activity.to_json()
+  end
+
+  # post '/activities' do
+  #   # if ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].include?(day)
+  #   # else
+  #   #   puts "Error: Invalid day"
+  #   # end
+  #   day_id = Calendar.find_by(day: params[:day]).id
+  #   activity = Activity.create(
+  #     to_do: params[:to_do],
+  #     calender_id: day_id,
+  #     location: params[:location],
+  #     duration: params[:duration])
+  #   activity.to_json
+  # end
+
+  post '/activities' do
+    day_id = Calender.find_by(day: params[:day]).id
+    #add condition for error if wrong input is given
+    activity = Activity.create(
+      to_do: params[:to_do],
+      calender_id: day_id,
+      location: params[:location],
+      duration: params[:duration])
+    activity.to_json
+  end
+
+  delete '/activities/:id' do
+    activity = Activity.find(params[:id])
+    activity.destroy
+    activity.to_json
+  end 
+
+  patch '/activities/:id' do
+    activity = Activity.find(params[:id])
+    activity.update(
+      to_do: params[:to_do],
+      calender_id: params[:calender_id],
+      location: params[:location],
+      duration: params[:duration])
+    activity.to_json
+  end
+
+
+  
+end
