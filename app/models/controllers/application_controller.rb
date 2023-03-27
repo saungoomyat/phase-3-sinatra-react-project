@@ -33,23 +33,9 @@ class ApplicationController < Sinatra::Base
     activity.to_json()
   end
 
-  # post '/activities' do
-  #   # if ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].include?(day)
-  #   # else
-  #   #   puts "Error: Invalid day"
-  #   # end
-  #   day_id = Calendar.find_by(day: params[:day]).id
-  #   activity = Activity.create(
-  #     to_do: params[:to_do],
-  #     calender_id: day_id,
-  #     location: params[:location],
-  #     duration: params[:duration])
-  #   activity.to_json
-  # end
 
   post '/activities' do
     day_id = Calender.find_by(day: params[:day]).id
-    #add condition for error if wrong input is given
     activity = Activity.create(
       to_do: params[:to_do],
       calender_id: day_id,
