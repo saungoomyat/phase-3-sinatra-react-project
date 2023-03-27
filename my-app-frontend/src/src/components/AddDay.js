@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 
   
-  function AddDay( {days, setDays} ) {
-    const [addDay, setAddDay] = useState("");
+function AddDay( {days, setDays} ) {
+  const [addDay, setAddDay] = useState("");
   
   
 
@@ -21,9 +21,7 @@ import React, { useState } from "react";
 
     .then((r) => r.json())
     .then((data) => {
-      console.log(data)
       setDays([...days, data])
-
     });
 
 
